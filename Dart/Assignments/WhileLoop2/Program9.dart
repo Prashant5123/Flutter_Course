@@ -7,7 +7,6 @@ void main(){
   print("Enter the number:");
   int num=int.parse(stdin.readLineSync()!);
   int remainder;
-  int sqaure=0;
   int reverse=0;
   while(num>0){
     remainder=num%10;
