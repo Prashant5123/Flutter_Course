@@ -21,7 +21,7 @@ import 'dart:io';
     print("");
   }
 }*/
-
+//or 
 void main(){
   print("Enter no. of rows");
   int row=int.parse(stdin.readLineSync()!);

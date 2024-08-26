@@ -14,7 +14,7 @@ void main() {
         if (j == 1) {
           stdout.write("$temp\t");
         } else if(j==row) {
-          stdout.write("$num\t");
+          stdout.write("$temp\t");
         }else{
            stdout.write("$num\t");
         }
