@@ -1,7 +1,10 @@
-void main(){
-  int x=10;
-  int y=20;
+
+void main() {
+
   
-  print(x);
-  print(y);
+  double sun(){
+    return 10;
+  }
+  print(sun());
+
 }
