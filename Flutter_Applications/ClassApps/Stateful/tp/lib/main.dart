@@ -135,10 +135,15 @@ class _QuizAppState extends State{
   int currentQueIndex=0;
   int selectedAns=-1;
   int score=0;
+  int temp=0;
+  bool check=true;
 
   WidgetStateProperty<Color?> setColor(int optionIndex){
     if(selectedAns!=-1){
       if(optionIndex==allQuestions[currentQueIndex]["correctAns"]){
+        if(selectedAns==allQuestions[currentQueIndex]["correctAns"] && temp==currentQueIndex){
+                  score++;
+        }
         return WidgetStateProperty.all(Colors.green);
       }
       else if(selectedAns==optionIndex){
@@ -150,6 +155,26 @@ class _QuizAppState extends State{
     }
     else{
       return WidgetStateProperty.all(null);
+    }
+  }
+//print("hiii")
+  void backNext(){
+    if(check==true){
+      if(selectedAns!=-1){
+        check=false;
+        preAns.insert(currentQueIndex, selectedAns);
+        if(currentQueIndex<allQuestions.length-1){
+          currentQueIndex++;
+          selectedAns=-1;
+        }
+      }
+    }else{
+      
+      if(currentQueIndex>0){
+        currentQueIndex--;
+        selectedAns=preAns[currentQueIndex];
+
+      }
     }
   }
   
@@ -241,12 +266,17 @@ class _QuizAppState extends State{
                 ),
               ],
             ),
-
+        
+            
+        
             const SizedBox(
               height: 28,
             ),
-
+        
+            
+        
             Container(
+              padding: const EdgeInsets.all(10),
               decoration: const BoxDecoration(color: Color.fromARGB(255, 212, 212, 212)),
               child: Text(allQuestions[currentQueIndex]["question"],
                 style:const TextStyle(
@@ -255,11 +285,11 @@ class _QuizAppState extends State{
                 ),
               ),
             ),
-
+        
             const SizedBox(
               height: 28,
             ),
-
+        
             SizedBox(
               height: 50,
               width: 380,
@@ -284,11 +314,11 @@ class _QuizAppState extends State{
                 ),
               ),
             ),
-
+        
             const SizedBox(
               height: 28,
             ),
-
+        
             SizedBox(
               height: 50,
               width: 380,
@@ -312,11 +342,11 @@ class _QuizAppState extends State{
                 ),
               ),
             ),
-
+        
             const SizedBox(
               height: 28,
             ),
-
+        
             SizedBox(
               height: 50,
               width: 380,
@@ -340,11 +370,11 @@ class _QuizAppState extends State{
                 ),
               ),
             ),
-
+        
             const SizedBox(
               height: 28,
             ),
-
+        
             SizedBox(
               height: 50,
               width: 380,
@@ -368,23 +398,34 @@ class _QuizAppState extends State{
                 ),
               ),
             ),
-
+        
              const SizedBox(
               height: 28,
             ),
-
-
+        
+        
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
               style:ButtonStyle(backgroundColor:  WidgetStateProperty.all(Colors.blue)),
               onPressed: (){
-                  if(currentQueIndex>0){
-                    selectedAns=preAns[currentQueIndex];
-                    currentQueIndex--;
+                  backNext();
+                  // if(currentQueIndex>0 ){
+                  //print("hiii")
+                  //   if(selectedAns!=-1 && temp==currentQueIndex){
+                  //     preAns.insert(currentQueIndex,selectedAns);
+                  //   }
+                  //   print("--------------back------------------");
+                  //   print("$preAns");
+                  //   currentQueIndex--;
+                  //   selectedAns=preAns[currentQueIndex];
+                  //   print("$preAns");
+                  //   print(selectedAns=preAns[currentQueIndex]);
                     
-                  }
+                  //   check=false;
+                  //   print(check);
+                  // }
               
                 setState(() {
                   
@@ -395,31 +436,48 @@ class _QuizAppState extends State{
                 color: Colors.orange,
               ),
             ),
-
+        
                    const SizedBox(
               width:200,
             ),
             ElevatedButton(
               style:ButtonStyle(backgroundColor:  WidgetStateProperty.all(Colors.blue)),
               onPressed: (){
-                if(selectedAns==allQuestions[currentQueIndex]["correctAns"]){
-                  score++;
-                }
-
-                if(currentQueIndex+1<preAns.length){
-                  selectedAns=preAns[currentQueIndex]+1;
-                  currentQueIndex++;
+                backNext();
+                
+                // if(currentQueIndex<preAns.length-1){
                   
-                }
-                else if(selectedAns!=-1){
-                  preAns.insert(currentQueIndex,selectedAns);
-                  if(currentQueIndex<allQuestions.length-1){
-                    currentQueIndex++;
-                    selectedAns=-1;
-                  }else{
-                    screen=3;
-                  }
-                }
+                //   print("--------------Next------------------");
+                //   print("$preAns");
+                //   print(currentQueIndex);
+                //   currentQueIndex++;
+                //   print(currentQueIndex);
+                //   selectedAns=preAns[currentQueIndex];
+                //   print("$preAns");
+                //   print(selectedAns=preAns[currentQueIndex]);
+        
+                  
+                // }
+                // else if(selectedAns!=-1){   
+                //   if(check==false){ 
+                //       print("hiii");
+                //       if(temp>currentQueIndex){
+                //         check=true;
+                //       }
+                //   }else{
+                //     print("hiii2");
+                //     preAns.insert(currentQueIndex,selectedAns);
+                //   }
+                //   if(currentQueIndex<allQuestions.length-1){
+                   
+                //     print("$preAns"); 
+                //     temp++;
+                //     currentQueIndex++;
+                //     selectedAns=-1;
+                //   }else{
+                //     screen=3;
+                //   }
+                // }
               
                 setState(() {
                   
@@ -432,7 +490,7 @@ class _QuizAppState extends State{
             ),
             ],
           ),
-
+        
             
           ],
         ),
@@ -498,10 +556,10 @@ class _QuizAppState extends State{
                 child: ElevatedButton(
                   style: ButtonStyle(backgroundColor: WidgetStateProperty.all(Colors.blue)),
                   onPressed: (){
-                    screen=1;
+                    
                     selectedAns=-1;
                     currentQueIndex=0;
-                    screen=1;
+                    screen=2;
                     score=0;
                     setState(() {
                       

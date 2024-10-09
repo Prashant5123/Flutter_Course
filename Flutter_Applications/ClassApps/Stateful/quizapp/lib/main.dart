@@ -64,16 +64,7 @@ class _QuizAppState extends State{
       ],
       "correctAns":0
     },
-    {
-      "question":"Guess the output of the following code\nvoid main(){\nint x;\nint y-10;\nprint(y);\n}",
-      "options":[
-        "Error",
-        "10",
-        "null",
-        "0"
-      ],
-      "correctAns":1
-    },
+    
     {
       "question":"Which of the following is not an Arithmetic operator?",
       "options":[
@@ -84,46 +75,7 @@ class _QuizAppState extends State{
       ],
       "correctAns":3
     },
-    {
-      "question":"How many operand(s) can unary operators take to perform an operation?",
-      "options":[
-        "2",
-        "3",
-        "1",
-        "Cant Decide"
-      ],
-      "correctAns":2
-    },
-    {
-      "question":"The outcome of the operation performed using the Relational Operators is of type......",
-      "options":[
-        "int",
-        "will be decided based on operands",
-        "double",
-        "bool"
-      ],
-      "correctAns":3
-    },
-    {
-      "question":"& falls under which operator?",
-      "options":[
-        "Logical Opeartor",
-        "Comparison Operators",
-        "Bitwise Operators",
-        "Arithmetic Operators"
-      ],
-      "correctAns":2
-    },
-    {
-      "question":"_ _ _data type can be used to represent true or false.",
-      "options":[
-        "Boolean",
-        "bool",
-        "flag",
-        "num"
-      ],
-      "correctAns":1
-    },
+
   ];
   int screen=1;
   int currentQueIndex=0;
@@ -139,11 +91,11 @@ class _QuizAppState extends State{
         return WidgetStateProperty.all(Colors.red);
       }
       else{
-        return WidgetStateProperty.all(null);
+        return WidgetStateProperty.all(Colors.white);
       }
     }
     else{
-      return WidgetStateProperty.all(null);
+      return WidgetStateProperty.all(Colors.white);
     }
   }
   
@@ -156,16 +108,17 @@ class _QuizAppState extends State{
   Scaffold appScreen(){
     if(screen==1){
       return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 202, 212, 226),
         appBar: AppBar(
-          title:const Text("Quiz Start",
+          title:const Text("Quiz App",
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w900,
-              color: Colors.orange,
+              color: Colors.white,
             ),
           ),
           centerTitle: true,
-          backgroundColor: Colors.blue,
+          backgroundColor: const Color.fromARGB(255, 24, 58, 86),
         ),
 
         body: Center(
@@ -175,14 +128,16 @@ class _QuizAppState extends State{
               SizedBox(
                 width:350,
                 height: 350,
-                child: Image.network("https://media.istockphoto.com/id/1616906708/vector/vector-speech-bubble-with-quiz-time-words-trendy-text-balloon-with-geometric-grapic-shape.jpg?s=612x612&w=0&k=20&c=3-qsji8Y5QSuShaMi6cqONlVZ3womknA5CiJ4PCeZEI="),
+                child: Image.asset("assets/quiz1.png"),
+          
+                
               ),
 
               SizedBox(
                 height: 50,
                 width: 200,
                 child: ElevatedButton(
-                  style: ButtonStyle(backgroundColor: WidgetStateProperty.all(Colors.blue)),
+                  style: ButtonStyle(backgroundColor: WidgetStateProperty.all(const Color.fromARGB(255, 24, 58, 86))),
                   onPressed: (){
                     screen=2;
                     setState(() {
@@ -194,7 +149,7 @@ class _QuizAppState extends State{
                     style: TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.w700,
-                      color: Colors.black,
+                      color: Colors.white,
 
                     ),
                   ),
@@ -210,16 +165,17 @@ class _QuizAppState extends State{
       );
     }else if(screen==2){
       return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 202, 212, 226),
         appBar: AppBar(
           title:const Text("Quiz App",
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w900,
-              color: Colors.orange,
+              color: Colors.white,
             ),
           ),
           centerTitle: true,
-          backgroundColor: Colors.blue,
+          backgroundColor: const  Color.fromARGB(255, 24, 58, 86),
         ),
 
 
@@ -244,12 +200,18 @@ class _QuizAppState extends State{
               height: 28,
             ),
 
-            SizedBox(
-              width: 400,
+            Container(
+              padding: const EdgeInsets.all(10),
+              margin:const EdgeInsets.all(10),
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
               child: Text(allQuestions[currentQueIndex]["question"],
                 style:const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700
                 ),
               ),
             ),
@@ -281,7 +243,8 @@ class _QuizAppState extends State{
                 child: Text("A. ${allQuestions[currentQueIndex]["options"][0]}",
                   style:const TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700
                   ),
                 ),
               ),
@@ -311,8 +274,9 @@ class _QuizAppState extends State{
                 },
                 child: Text("B. ${allQuestions[currentQueIndex]["options"][1]}",
                   style:const TextStyle(
+                     color: Colors.black,
                     fontSize: 20,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
@@ -342,8 +306,9 @@ class _QuizAppState extends State{
                 },
                 child: Text("C. ${allQuestions[currentQueIndex]["options"][2]}",
                   style:const TextStyle(
+                     color: Colors.black,
                     fontSize: 20,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
@@ -373,8 +338,9 @@ class _QuizAppState extends State{
                 },
                 child: Text("D. ${allQuestions[currentQueIndex]["options"][3]}",
                   style:const TextStyle(
+                     color: Colors.black,
                     fontSize: 20,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
@@ -385,7 +351,7 @@ class _QuizAppState extends State{
         ),
 
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.blue,
+          backgroundColor: const  Color.fromARGB(255, 24, 58, 86),
           onPressed: (){
             if(selectedAns==allQuestions[currentQueIndex]["correctAns"]){
               score++;
@@ -405,22 +371,23 @@ class _QuizAppState extends State{
           },
 
           child: const Icon(Icons.forward,
-            color: Colors.orange,
+            color: Colors.white,
           ),
         ),
       );
     }else{
       return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 202, 212, 226),
         appBar: AppBar(
-          title:const Text("Quiz end",
+          title:const Text("Result",
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w900,
-              color: Colors.orange,
+              color: Colors.white,
             ),
           ),
           centerTitle: true,
-          backgroundColor: Colors.blue,
+          backgroundColor: const Color.fromARGB(255, 24, 58, 86),
         ),
 
         body: Center(
@@ -430,7 +397,7 @@ class _QuizAppState extends State{
               SizedBox(
                 height: 250,
                 width: 250,
-                child: Image.network("https://img.freepik.com/free-vector/trophy-flat-style_78370-3222.jpg?w=360")
+                child: Image.asset("assets/trophy.png")
               ),
             
               const SizedBox(
@@ -464,7 +431,7 @@ class _QuizAppState extends State{
                 width: 200,
                 
                 child: ElevatedButton(
-                  style: ButtonStyle(backgroundColor: WidgetStateProperty.all(Colors.blue)),
+                  style: ButtonStyle(backgroundColor: WidgetStateProperty.all(const Color.fromARGB(255, 24, 58, 86))),
                   onPressed: (){
                     
                     selectedAns=-1;
@@ -480,7 +447,7 @@ class _QuizAppState extends State{
                     style: TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.w700,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                 ),
